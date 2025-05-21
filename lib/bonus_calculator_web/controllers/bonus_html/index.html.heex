@@ -1,0 +1,71 @@
+<.flash_group flash={@flash} />
+<div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32">
+  <div class="mx-auto max-w-xl lg:mx-0">
+    <h1 class="text-brand mt-10 text-3xl font-bold tracking-tight text-zinc-900">Bonus Calculator</h1>
+    <p class="mt-4 text-base leading-7 text-zinc-600">
+      Enter the modifiers, bonus target, and salary to calculate your bonus.
+    </p>
+
+    <div class="mt-10">
+      <.form for={%{}} action={~p"/calculate"} method="post">
+        <div class="space-y-6">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="business_unit_modifier" class="block text-sm font-medium text-gray-700">Business Unit Modifier - 0%-200%</label>
+              <div class="mt-1">
+                <input type="number" name="business_unit_modifier" id="business_unit_modifier" step="0.1" placeholder="100.0" min="0" max="200"
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="enterprise_modifier" class="block text-sm font-medium text-gray-700">Enterprise Modifier - 0%-200%</label>
+              <div class="mt-1">
+                <input type="number" name="enterprise_modifier" id="enterprise_modifier" step="0.1" placeholder="100.0" min="0" max="200"
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="nfs_modifier" class="block text-sm font-medium text-gray-700">NFS Modifier - 90%-110%</label>
+              <div class="mt-1">
+                <input type="number" name="nfs_modifier" id="nfs_modifier" step="0.1" placeholder="100.0" min="90" max="110"
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="individual_modifier" class="block text-sm font-medium text-gray-700">Individual Modifier - 0%-150%</label>
+              <div class="mt-1">
+                <input type="number" name="individual_modifier" id="individual_modifier" step="0.1" placeholder="100.0" min="0" max="150"
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="bonus_target" class="block text-sm font-medium text-gray-700">Bonus Target</label>
+              <div class="mt-1">
+                <input type="number" name="bonus_target" id="bonus_target" step="0.1" placeholder="10.0" 
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label for="salary" class="block text-sm font-medium text-gray-700">Salary</label>
+              <div class="mt-1">
+                <input type="number" name="salary" id="salary" step="1" placeholder="100000" 
+                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              Calculate Bonus
+            </button>
+          </div>
+        </div>
+      </.form>
+    </div>
+  </div>
+</div>
