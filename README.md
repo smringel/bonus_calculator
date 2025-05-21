@@ -8,7 +8,7 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Once the app is running in your browser, you can input all of the parameters and calculate your bonus! Happy Moneying!
 
 ## Learn more
 
