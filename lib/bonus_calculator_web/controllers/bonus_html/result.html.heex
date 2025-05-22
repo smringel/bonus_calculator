@@ -23,7 +23,13 @@
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Individual Modifier</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @individual_modifier %>%</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
+              <input type="range" id="individual_modifier_slider" name="individual_modifier_slider" 
+                     min="0" max="150" step="1" value={@individual_modifier}
+                     class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                     oninput="updateIndividualModifier(this.value)" />
+              <span id="individual_modifier_value" class="ml-2"><%= @individual_modifier %>%</span>
+            </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Bonus Target (%)</dt>
@@ -57,7 +63,10 @@
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">FY25 MIP Award</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">$<%= :erlang.float_to_binary(@bonus, [decimals: 2]) %></dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
+              <span data-bonus-value>$<%= :erlang.float_to_binary(@bonus, [decimals: 2]) %></span>
+              <span data-bonus-percentage class="ml-2 text-sm font-normal text-gray-500">(<%=:erlang.float_to_binary((@bonus / @salary) * 100, [decimals: 2]) %>% of salary)</span>
+            </dd>
           </div>
         </dl>
       </div>
@@ -68,5 +77,49 @@
         Calculate Another Bonus
       </a>
     </div>
+
+    <script>
+      // Store initial values
+      const initialValues = {
+        salary: <%= @salary %>,
+        bonusTarget: <%= @bonus_target %>,
+        businessUnitModifier: <%= @business_unit_modifier %>,
+        enterpriseModifier: <%= @enterprise_modifier %>,
+        nfsModifier: <%= @nfs_modifier %>,
+        individualModifier: <%= @individual_modifier %>
+      };
+
+      function updateIndividualModifier(value) {
+        // Update display value
+        document.getElementById('individual_modifier_value').textContent = value + '%';
+        
+        // Recalculate bonus
+        const newIndividualModifier = parseFloat(value) / 100.0;
+        const mipTargetValue = initialValues.salary * (initialValues.bonusTarget / 100.0);
+        const financialPerformance = (0.7 * (initialValues.businessUnitModifier / 100.0)) + 
+                                   (0.3 * (initialValues.enterpriseModifier / 100.0));
+        const nfsModifierDecimal = initialValues.nfsModifier / 100.0;
+        
+        // Calculate new bonus
+        const newBonus = mipTargetValue * financialPerformance * nfsModifierDecimal * newIndividualModifier;
+        
+        // Update bonus display
+        const bonusElement = document.querySelector('span[data-bonus-value]');
+        if (bonusElement) {
+          bonusElement.textContent = '$' + newBonus.toFixed(2);
+        } else {
+          console.error('Could not find bonus value element');
+        }
+        
+        // Update percentage of salary
+        const percentageElement = document.querySelector('span[data-bonus-percentage]');
+        if (percentageElement) {
+          const percentOfSalary = (newBonus / initialValues.salary) * 100;
+          percentageElement.textContent = '(' + percentOfSalary.toFixed(2) + '% of salary)';
+        } else {
+          console.error('Could not find bonus percentage element');
+        }
+      }
+    </script>
   </div>
 </div>
