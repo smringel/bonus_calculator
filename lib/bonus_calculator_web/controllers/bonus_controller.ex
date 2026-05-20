@@ -13,20 +13,38 @@ defmodule BonusCalculatorWeb.BonusController do
     individual_modifier = parse_float(params["individual_modifier"])
     bonus_target = parse_float(params["bonus_target"])
     salary = parse_float(params["salary"])
+    weeks_worked = parse_weeks_worked(params["weeks_worked"])
 
-    # Calculate bonus (placeholder calculation)
-    bonus = calculate_bonus(business_unit_modifier, enterprise_modifier, nfs_modifier, 
-                           individual_modifier, bonus_target, salary)
+    # Pro-rate salary based on weeks worked out of 52
+    prorated_salary = salary * (weeks_worked / 52.0)
+
+    # Calculate bonus using pro-rated salary
+    bonus = calculate_bonus(business_unit_modifier, enterprise_modifier, nfs_modifier,
+                           individual_modifier, bonus_target, prorated_salary)
 
     # Render the result
-    render(conn, :result, layout: false, 
+    render(conn, :result, layout: false,
            business_unit_modifier: business_unit_modifier,
            enterprise_modifier: enterprise_modifier,
            nfs_modifier: nfs_modifier,
            individual_modifier: individual_modifier,
            bonus_target: bonus_target,
            salary: salary,
+           weeks_worked: weeks_worked,
+           prorated_salary: prorated_salary,
            bonus: bonus)
+  end
+
+  # Weeks worked defaults to 52 (full year) when blank; clamped to 0..52
+  defp parse_weeks_worked(nil), do: 52.0
+  defp parse_weeks_worked(""), do: 52.0
+  defp parse_weeks_worked(value) do
+    weeks = parse_float(value)
+    cond do
+      weeks < 0.0 -> 0.0
+      weeks > 52.0 -> 52.0
+      true -> weeks
+    end
   end
 
   # Helper function to parse float values from form inputs
