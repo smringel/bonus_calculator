@@ -1,7 +1,9 @@
 <.flash_group flash={@flash} />
 <div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32">
   <div class="mx-auto max-w-xl lg:mx-0">
-    <h1 class="text-brand mt-10 text-3xl font-bold tracking-tight text-zinc-900">Bonus Calculator</h1>
+    <h1 class="text-brand mt-10 text-3xl font-bold tracking-tight text-zinc-900">
+      Bonus Calculator
+    </h1>
     <p class="mt-4 text-base leading-7 text-zinc-600">
       Enter the modifiers, bonus target, and salary to calculate your bonus.
     </p>
@@ -11,65 +13,313 @@
         <div class="space-y-6">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label for="business_unit_modifier" class="block text-sm font-medium text-gray-700">Business Unit Modifier - 0%-200%</label>
+              <label for="business_unit_modifier" class="block text-sm font-medium text-gray-700">
+                Business Unit Modifier - 0%-200%
+              </label>
               <div class="mt-1">
-                <input type="number" name="business_unit_modifier" id="business_unit_modifier" step="0.1" placeholder="100.0" min="0" max="200"
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="business_unit_modifier"
+                  id="business_unit_modifier"
+                  step="0.1"
+                  placeholder="100.0"
+                  min="0"
+                  max="200"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <label for="enterprise_modifier" class="block text-sm font-medium text-gray-700">Enterprise Modifier - 0%-200%</label>
+              <label for="enterprise_modifier" class="block text-sm font-medium text-gray-700">
+                Enterprise Modifier - 0%-200%
+              </label>
               <div class="mt-1">
-                <input type="number" name="enterprise_modifier" id="enterprise_modifier" step="0.1" placeholder="100.0" min="0" max="200"
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="enterprise_modifier"
+                  id="enterprise_modifier"
+                  step="0.1"
+                  placeholder="100.0"
+                  min="0"
+                  max="200"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <label for="nfs_modifier" class="block text-sm font-medium text-gray-700">NFS Modifier - 90%-110%</label>
+              <label for="nfs_modifier" class="block text-sm font-medium text-gray-700">
+                NFS Modifier - 90%-110%
+              </label>
               <div class="mt-1">
-                <input type="number" name="nfs_modifier" id="nfs_modifier" step="0.1" placeholder="100.0" min="90" max="110"
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="nfs_modifier"
+                  id="nfs_modifier"
+                  step="0.1"
+                  placeholder="100.0"
+                  min="90"
+                  max="110"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <label for="individual_modifier" class="block text-sm font-medium text-gray-700">Individual Modifier - 0%-150%</label>
+              <label for="individual_modifier" class="block text-sm font-medium text-gray-700">
+                Individual Modifier - 0%-150%
+              </label>
               <div class="mt-1">
-                <input type="number" name="individual_modifier" id="individual_modifier" step="0.1" placeholder="100.0" min="0" max="150"
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="individual_modifier"
+                  id="individual_modifier"
+                  step="0.1"
+                  placeholder="100.0"
+                  min="0"
+                  max="150"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <label for="bonus_target" class="block text-sm font-medium text-gray-700">Bonus Target</label>
+              <label for="bonus_target" class="block text-sm font-medium text-gray-700">
+                Bonus Target
+              </label>
               <div class="mt-1">
-                <input type="number" name="bonus_target" id="bonus_target" step="0.1" placeholder="10.0" 
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="bonus_target"
+                  id="bonus_target"
+                  step="0.1"
+                  placeholder="10.0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
               <label for="salary" class="block text-sm font-medium text-gray-700">Salary</label>
               <div class="mt-1">
-                <input type="number" name="salary" id="salary" step="1" placeholder="100000" 
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                <input
+                  type="number"
+                  name="salary"
+                  id="salary"
+                  step="1"
+                  placeholder="100000"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <label for="weeks_worked" class="block text-sm font-medium text-gray-700">Weeks Worked (out of 52)</label>
+              <label for="weeks_worked" class="block text-sm font-medium text-gray-700">
+                Weeks Worked (out of 52)
+              </label>
               <div class="mt-1">
-                <input type="number" name="weeks_worked" id="weeks_worked" step="0.1" placeholder="52" min="0" max="52"
-                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
-                <p class="mt-1 text-xs text-gray-500">Leave blank for a full year. Reduce for leave/partial-year to pro-rate your salary.</p>
+                <input
+                  type="number"
+                  name="weeks_worked"
+                  id="weeks_worked"
+                  step="0.1"
+                  placeholder="52"
+                  min="0"
+                  max="52"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Leave blank for a full year. Reduce for leave/partial-year to pro-rate your salary.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6">
+            <h2 class="text-lg font-medium text-gray-900">Estimated Deductions (optional)</h2>
+            <p class="mt-1 text-xs text-gray-500">
+              All figures are estimates. Your actual paycheck depends on YTD wages, exact state/local rules, and other elections.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Federal Tax Method</label>
+              <div class="mt-2 space-y-2">
+                <label class="flex items-start">
+                  <input
+                    type="radio"
+                    name="fed_method"
+                    value="supplemental"
+                    checked
+                    class="mt-1"
+                    onchange="toggleMarginalFields(this.value)"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">
+                    <strong>Supplemental flat (22%)</strong>
+                    &mdash; how the IRS requires employers to withhold from bonuses
+                  </span>
+                </label>
+                <label class="flex items-start">
+                  <input
+                    type="radio"
+                    name="fed_method"
+                    value="marginal"
+                    class="mt-1"
+                    onchange="toggleMarginalFields(this.value)"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">
+                    <strong>Marginal bracket estimate</strong>
+                    &mdash; closer to what you'll actually owe at filing time
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="marginal_fields" class="hidden grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="filing_status" class="block text-sm font-medium text-gray-700">
+                Filing Status
+              </label>
+              <div class="mt-1">
+                <select
+                  name="filing_status"
+                  id="filing_status"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                >
+                  <option value="single">Single</option>
+                  <option value="mfj">Married Filing Jointly</option>
+                  <option value="mfs">Married Filing Separately</option>
+                  <option value="hoh">Head of Household</option>
+                </select>
+                <p class="mt-1 text-xs text-gray-500">Used for the marginal estimate only.</p>
+              </div>
+            </div>
+
+            <div>
+              <label for="other_annual_income" class="block text-sm font-medium text-gray-700">
+                Other Annual Taxable Income ($)
+              </label>
+              <div class="mt-1">
+                <input
+                  type="number"
+                  name="other_annual_income"
+                  id="other_annual_income"
+                  step="1"
+                  min="0"
+                  placeholder="0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Marginal mode: your other taxable income (typically salary minus traditional 401(k) &amp; pre-tax benefits).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+              <div class="mt-1">
+                <select
+                  name="state"
+                  id="state"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                >
+                  <%= for {code, label, _rate} <- @state_options do %>
+                    <option value={code} selected={code == "OH"}>{label}</option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="local_tax_rate" class="block text-sm font-medium text-gray-700">
+                Local / City Tax Rate (%)
+              </label>
+              <div class="mt-1">
+                <input
+                  type="number"
+                  name="local_tax_rate"
+                  id="local_tax_rate"
+                  step="0.01"
+                  min="0"
+                  max="10"
+                  placeholder="0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">e.g. Columbus 2.5%, NYC ~3.876%.</p>
+              </div>
+            </div>
+
+            <div>
+              <label for="traditional_401k" class="block text-sm font-medium text-gray-700">
+                Traditional 401(k) (%)
+              </label>
+              <div class="mt-1">
+                <input
+                  type="number"
+                  name="traditional_401k"
+                  id="traditional_401k"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  placeholder="0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Pre-tax. Reduces federal &amp; state income tax (not FICA).
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label for="roth_401k" class="block text-sm font-medium text-gray-700">
+                Roth 401(k) (%)
+              </label>
+              <div class="mt-1">
+                <input
+                  type="number"
+                  name="roth_401k"
+                  id="roth_401k"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  placeholder="0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Post-tax. Reduces take-home but not taxable income.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label for="hsa" class="block text-sm font-medium text-gray-700">
+                HSA Contribution from Bonus ($)
+              </label>
+              <div class="mt-1">
+                <input
+                  type="number"
+                  name="hsa"
+                  id="hsa"
+                  step="1"
+                  min="0"
+                  placeholder="0"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+                <p class="mt-1 text-xs text-gray-500">Pre-tax and pre-FICA.</p>
               </div>
             </div>
           </div>
 
           <div>
-            <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
               Calculate Bonus
             </button>
           </div>
@@ -78,3 +328,22 @@
     </div>
   </div>
 </div>
+
+<script>
+  function toggleMarginalFields(value) {
+    const fields = document.getElementById('marginal_fields');
+    if (!fields) return;
+    if (value === 'marginal') {
+      fields.classList.remove('hidden');
+    } else {
+      fields.classList.add('hidden');
+    }
+  }
+
+  // Ensure the panel reflects whichever radio is checked on initial load
+  // (e.g. after a back-button restore).
+  document.addEventListener('DOMContentLoaded', function () {
+    const checked = document.querySelector('input[name="fed_method"]:checked');
+    if (checked) toggleMarginalFields(checked.value);
+  });
+</script>

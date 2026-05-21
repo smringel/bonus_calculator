@@ -2,7 +2,9 @@ defmodule BonusCalculatorWeb.ErrorJSONTest do
   use BonusCalculatorWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert BonusCalculatorWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert BonusCalculatorWeb.ErrorJSON.render("404.json", %{}) == %{
+             errors: %{detail: "Not Found"}
+           }
   end
 
   test "renders 500" do

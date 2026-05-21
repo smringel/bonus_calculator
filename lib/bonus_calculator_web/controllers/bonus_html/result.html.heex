@@ -1,8 +1,10 @@
 <.flash_group flash={@flash} />
 <div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32">
   <div class="mx-auto max-w-xl lg:mx-0">
-    <h1 class="text-brand mt-10 text-3xl font-bold tracking-tight text-zinc-900">Bonus Calculation Result</h1>
-    
+    <h1 class="text-brand mt-10 text-3xl font-bold tracking-tight text-zinc-900">
+      Bonus Calculation Result
+    </h1>
+
     <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-lg">
       <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">Input Parameters</h3>
@@ -11,43 +13,56 @@
         <dl>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Business Unit Modifier</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @business_unit_modifier %>%</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {@business_unit_modifier}%
+            </dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Enterprise Modifier</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @enterprise_modifier %>%</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {@enterprise_modifier}%
+            </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">NFS Modifier</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @nfs_modifier %>%</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{@nfs_modifier}%</dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Individual Modifier</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
-              <input type="range" id="individual_modifier_slider" name="individual_modifier_slider" 
-                     min="0" max="150" step="1" value={@individual_modifier}
-                     class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                     oninput="updateIndividualModifier(this.value)" />
-              <span id="individual_modifier_value" class="ml-2"><%= @individual_modifier %>%</span>
+              <input
+                type="range"
+                id="individual_modifier_slider"
+                name="individual_modifier_slider"
+                min="0"
+                max="150"
+                step="1"
+                value={@individual_modifier}
+                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                oninput="updateIndividualModifier(this.value)"
+              />
+              <span id="individual_modifier_value" class="ml-2">{@individual_modifier}%</span>
             </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Bonus Target (%)</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @bonus_target %></dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{@bonus_target}</dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Salary</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$<%= :erlang.float_to_binary(@salary, [decimals: 2]) %></dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              ${:erlang.float_to_binary(@salary, decimals: 2)}
+            </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Weeks Worked</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @weeks_worked %> / 52</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{@weeks_worked} / 52</dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Pro-Rated Salary</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              $<%= :erlang.float_to_binary(@prorated_salary, [decimals: 2]) %>
-              <span class="ml-2 text-xs text-gray-500">(salary &times; <%= @weeks_worked %>/52)</span>
+              ${:erlang.float_to_binary(@prorated_salary, decimals: 2)}
+              <span class="ml-2 text-xs text-gray-500">(salary &times; {@weeks_worked}/52)</span>
             </dd>
           </div>
         </dl>
@@ -62,21 +77,141 @@
         <dl>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">MIP Target Value</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$<%= :erlang.float_to_binary(@prorated_salary * (@bonus_target / 100.0), [decimals: 2]) %> <span class="text-xs text-gray-500">(based on pro-rated salary)</span></dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              ${:erlang.float_to_binary(@prorated_salary * (@bonus_target / 100.0), decimals: 2)}
+              <span class="text-xs text-gray-500">(based on pro-rated salary)</span>
+            </dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Financial Performance Result</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= :erlang.float_to_binary((0.7 * (@business_unit_modifier / 100.0)) + (0.3 * (@enterprise_modifier / 100.0)), [decimals: 4]) %> (70% BU + 30% Enterprise)</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {:erlang.float_to_binary(
+                0.7 * (@business_unit_modifier / 100.0) + 0.3 * (@enterprise_modifier / 100.0),
+                decimals: 4
+              )} (70% BU + 30% Enterprise)
+            </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Formula</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">MIP Target Value × Financial Performance × NFS Modifier × Individual Modifier</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              MIP Target Value × Financial Performance × NFS Modifier × Individual Modifier
+            </dd>
           </div>
           <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Gross MIP Award</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
-              <span data-bonus-value>$<%= :erlang.float_to_binary(@bonus, [decimals: 2]) %></span>
-              <span data-bonus-percentage class="ml-2 text-sm font-normal text-gray-500">(<%= if @prorated_salary > 0, do: :erlang.float_to_binary((@bonus / @prorated_salary) * 100, [decimals: 2]), else: "0.00" %>% of pro-rated salary)</span>
+              <span data-bonus-value>${:erlang.float_to_binary(@bonus, decimals: 2)}</span>
+              <span data-bonus-percentage class="ml-2 text-sm font-normal text-gray-500">
+                ({if @prorated_salary > 0,
+                  do: :erlang.float_to_binary(@bonus / @prorated_salary * 100, decimals: 2),
+                  else: "0.00"}% of pro-rated salary)
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Estimated Deductions &amp; Net Take-Home
+        </h3>
+        <p class="mt-1 text-xs text-gray-500">
+          Federal method:
+          <strong>
+            {if @fed_method == :marginal,
+              do: "Marginal bracket estimate",
+              else: "Supplemental flat (22%)"}
+          </strong>
+          &middot; State:
+          <strong>
+            {@state_code} ({:erlang.float_to_binary(@state_rate_pct, decimals: 2)}%)
+          </strong>
+          &middot; Local:
+          <strong>{:erlang.float_to_binary(@local_tax_rate_pct, decimals: 2)}%</strong>
+        </p>
+      </div>
+      <div class="border-t border-gray-200">
+        <dl>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Gross Bonus</dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-net-gross>
+              ${:erlang.float_to_binary(@breakdown.gross, decimals: 2)}
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+              Traditional 401(k) ({:erlang.float_to_binary(@traditional_401k_pct, decimals: 2)}%)
+            </dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-trad><%= :erlang.float_to_binary(@breakdown.traditional_401k, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+              Roth 401(k) ({:erlang.float_to_binary(@roth_401k_pct, decimals: 2)}%)
+            </dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-roth><%= :erlang.float_to_binary(@breakdown.roth_401k, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">HSA</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-hsa><%= :erlang.float_to_binary(@breakdown.hsa, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Social Security (6.2%)</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-ss><%= :erlang.float_to_binary(@breakdown.social_security, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Medicare (1.45%)</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-medicare><%= :erlang.float_to_binary(@breakdown.medicare, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Federal Income Tax</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-fed><%= :erlang.float_to_binary(@breakdown.federal_tax, [decimals: 2]) %></span>
+              <span class="ml-2 text-xs text-gray-500">
+                <%= if @fed_method == :marginal do %>
+                  marginal on top of ${:erlang.float_to_binary(@other_annual_income, decimals: 0)} other income ({@filing_status})
+                <% else %>
+                  22% × federal taxable
+                <% end %>
+              </span>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">State Tax</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-state><%= :erlang.float_to_binary(@breakdown.state_tax, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Local Tax</dt>
+            <dd class="mt-1 text-sm text-red-600 sm:mt-0 sm:col-span-2">
+              &minus; $<span data-net-local><%= :erlang.float_to_binary(@breakdown.local_tax, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">Total Deductions</dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-semibold">
+              $<span data-net-total><%= :erlang.float_to_binary(@breakdown.total_deductions, [decimals: 2]) %></span>
+            </dd>
+          </div>
+          <div class="bg-green-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-700">Estimated Net Bonus</dt>
+            <dd class="mt-1 text-base text-green-700 sm:mt-0 sm:col-span-2 font-bold">
+              $<span data-net-take-home><%= :erlang.float_to_binary(@breakdown.net, [decimals: 2]) %></span>
+              <span class="ml-2 text-xs font-normal text-gray-600">
+                (<span data-net-pct><%= if @breakdown.gross > 0, do: :erlang.float_to_binary((@breakdown.net / @breakdown.gross) * 100, [decimals: 1]), else: "0.0" %></span>% of gross)
+              </span>
             </dd>
           </div>
         </dl>
@@ -84,13 +219,15 @@
     </div>
 
     <div class="mt-8">
-      <a href="/" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <a
+        href="/"
+        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
         Calculate Another Bonus
       </a>
     </div>
 
     <script>
-      // Store initial values
       const initialValues = {
         salary: <%= @salary %>,
         proratedSalary: <%= @prorated_salary %>,
@@ -99,40 +236,94 @@
         businessUnitModifier: <%= @business_unit_modifier %>,
         enterpriseModifier: <%= @enterprise_modifier %>,
         nfsModifier: <%= @nfs_modifier %>,
-        individualModifier: <%= @individual_modifier %>
+        individualModifier: <%= @individual_modifier %>,
+        fedMethod: "<%= @fed_method %>",
+        filingStatus: "<%= @filing_status %>",
+        otherAnnualIncome: <%= @other_annual_income %>,
+        stateRatePct: <%= @state_rate_pct %>,
+        localTaxRatePct: <%= @local_tax_rate_pct %>,
+        traditional401kPct: <%= @traditional_401k_pct %>,
+        roth401kPct: <%= @roth_401k_pct %>,
+        hsa: <%= @hsa %>
       };
 
+      const FEDERAL_BRACKETS = {
+        single: [[0,0.10],[11925,0.12],[48475,0.22],[103350,0.24],[197300,0.32],[250525,0.35],[626350,0.37]],
+        mfj:    [[0,0.10],[23850,0.12],[96950,0.22],[206700,0.24],[394600,0.32],[501050,0.35],[751600,0.37]],
+        mfs:    [[0,0.10],[11925,0.12],[48475,0.22],[103350,0.24],[197300,0.32],[250525,0.35],[375800,0.37]],
+        hoh:    [[0,0.10],[17000,0.12],[64850,0.22],[103350,0.24],[197300,0.32],[250500,0.35],[626350,0.37]]
+      };
+      const SS_RATE = 0.062, MEDICARE_RATE = 0.0145, SUPP_FED_RATE = 0.22;
+
+      function taxOn(income, brackets) {
+        if (income <= 0) return 0;
+        let tax = 0;
+        for (let i = 0; i < brackets.length; i++) {
+          const [lower, rate] = brackets[i];
+          if (income <= lower) break;
+          const upper = (i + 1 < brackets.length) ? Math.min(income, brackets[i + 1][0]) : income;
+          tax += (upper - lower) * rate;
+        }
+        return tax;
+      }
+
+      function computeDeductions(gross, opts) {
+        const trad = gross * (opts.traditional401kPct / 100);
+        const roth = gross * (opts.roth401kPct / 100);
+        const hsa = Math.min(opts.hsa, gross);
+        const ficaBase = Math.max(gross - hsa, 0);
+        const ss = ficaBase * SS_RATE;
+        const medicare = ficaBase * MEDICARE_RATE;
+        const fedTaxable = Math.max(gross - trad - hsa, 0);
+        let federal;
+        if (opts.fedMethod === "marginal") {
+          const brackets = FEDERAL_BRACKETS[opts.filingStatus] || FEDERAL_BRACKETS.single;
+          federal = taxOn(opts.otherAnnualIncome + fedTaxable, brackets) - taxOn(opts.otherAnnualIncome, brackets);
+        } else {
+          federal = fedTaxable * SUPP_FED_RATE;
+        }
+        const state = fedTaxable * (opts.stateRatePct / 100);
+        const local = gross * (opts.localTaxRatePct / 100);
+        const total = trad + roth + hsa + ss + medicare + federal + state + local;
+        return { gross, trad, roth, hsa, ss, medicare, federal, state, local, total, net: gross - total };
+      }
+
+      const fmt = (n) => n.toFixed(2);
+
       function updateIndividualModifier(value) {
-        // Update display value
         document.getElementById('individual_modifier_value').textContent = value + '%';
 
-        // Recalculate bonus using pro-rated salary
         const newIndividualModifier = parseFloat(value) / 100.0;
         const mipTargetValue = initialValues.proratedSalary * (initialValues.bonusTarget / 100.0);
         const financialPerformance = (0.7 * (initialValues.businessUnitModifier / 100.0)) +
                                    (0.3 * (initialValues.enterpriseModifier / 100.0));
         const nfsModifierDecimal = initialValues.nfsModifier / 100.0;
-
-        // Calculate new bonus
         const newBonus = mipTargetValue * financialPerformance * nfsModifierDecimal * newIndividualModifier;
 
-        // Update bonus display
         const bonusElement = document.querySelector('span[data-bonus-value]');
-        if (bonusElement) {
-          bonusElement.textContent = '$' + newBonus.toFixed(2);
-        } else {
-          console.error('Could not find bonus value element');
-        }
+        if (bonusElement) bonusElement.textContent = '$' + fmt(newBonus);
 
-        // Update percentage of pro-rated salary
         const percentageElement = document.querySelector('span[data-bonus-percentage]');
         if (percentageElement) {
           const denom = initialValues.proratedSalary;
           const percentOfSalary = denom > 0 ? (newBonus / denom) * 100 : 0;
-          percentageElement.textContent = '(' + percentOfSalary.toFixed(2) + '% of pro-rated salary)';
-        } else {
-          console.error('Could not find bonus percentage element');
+          percentageElement.textContent = '(' + fmt(percentOfSalary) + '% of pro-rated salary)';
         }
+
+        const d = computeDeductions(newBonus, initialValues);
+        const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };
+        set('[data-net-gross]',     '$' + fmt(d.gross));
+        set('[data-net-trad]',      fmt(d.trad));
+        set('[data-net-roth]',      fmt(d.roth));
+        set('[data-net-hsa]',       fmt(d.hsa));
+        set('[data-net-ss]',        fmt(d.ss));
+        set('[data-net-medicare]',  fmt(d.medicare));
+        set('[data-net-fed]',       fmt(d.federal));
+        set('[data-net-state]',     fmt(d.state));
+        set('[data-net-local]',     fmt(d.local));
+        set('[data-net-total]',     fmt(d.total));
+        set('[data-net-take-home]', fmt(d.net));
+        set('[data-net-pct]',       d.gross > 0 ? (d.net / d.gross * 100).toFixed(1) : '0.0');
       }
     </script>
   </div>
